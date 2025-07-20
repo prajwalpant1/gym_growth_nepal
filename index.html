@@ -249,7 +249,9 @@
       successMsg.style.display = 'none';
       errorMsg.style.display = 'none';
       fetch(scriptURL, { method: 'POST', body: new FormData(form)});
+      setTimeout(() => {
       window.location.href = calendlyURL;
+      }, 500); // 0.5 seconds delay
     });
   </script>
 </body>
