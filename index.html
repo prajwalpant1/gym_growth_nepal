@@ -248,10 +248,21 @@
       e.preventDefault();
       successMsg.style.display = 'none';
       errorMsg.style.display = 'none';
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)});
-      setTimeout(() => {
-      window.location.href = calendlyURL;
-      }, 500); // 0.5 seconds delay
+
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+          if (response.ok) {
+            successMsg.style.display = 'block';
+            setTimeout(() => {
+              window.location.href = calendlyURL;
+            }, 800); // 0.8 seconds delay for user feedback
+          } else {
+            errorMsg.style.display = 'block';
+          }
+        })
+        .catch(error => {
+          errorMsg.style.display = 'block';
+        });
     });
   </script>
 </body>
